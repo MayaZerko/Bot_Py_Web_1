@@ -1,6 +1,6 @@
 from abc import abstractmethod, ABC
 
-from src.classes import AddressBook, Record
+
 
 
 class UserPreview(ABC):
@@ -15,7 +15,7 @@ class SimplePreview(UserPreview):
 
 
 class ContactsPreview(UserPreview):
-    def build_preview(self, data: AddressBook) -> str:
+    def build_preview(self, data) -> str:
         contacts = ''
         page_number = 1
 
@@ -30,7 +30,7 @@ class ContactsPreview(UserPreview):
 
 
 class ContactPreview(UserPreview):
-    def build_preview(self, data: Record) ->str:
+    def build_preview(self, data) ->str:
         birthday_info = ''
         email_info = ''
         address_info = ''
