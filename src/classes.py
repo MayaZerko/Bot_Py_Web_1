@@ -3,6 +3,8 @@ import re
 from collections import UserDict
 from datetime import datetime
 
+import user_preview_factory as user_preview_factory
+
 
 class Field:
     def __init__(self, value):
@@ -76,23 +78,7 @@ class Record:
         self.address = None
 
     def get_info(self):
-
-        birthday_info = ''
-        email_info = ''
-        address_info = ''
-
-        phones_info = ', '.join([phone.value for phone in self.phones])
-
-        if self.birthday:
-            birthday_info = f' Birthday : {self.birthday.value}'
-
-        if self.email:
-            email_info = f' Email : {self.email.value}'
-
-        if self.address:
-            address_info = f' Address : {self.address.value}'
-
-        return f'{self.name.value} : {phones_info}{birthday_info}{email_info}{address_info}'
+        return user_preview_factory.UserPreviewFactory().create_contact_preview().build_preview(self)
 
     def add_phone(self, phone):
         self.phones.append(Phone(phone))

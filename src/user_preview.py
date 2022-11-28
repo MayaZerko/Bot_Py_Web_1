@@ -1,6 +1,6 @@
 from abc import abstractmethod, ABC
 
-from src.classes import AddressBook
+from src.classes import AddressBook, Record
 
 
 class UserPreview(ABC):
@@ -30,8 +30,23 @@ class ContactsPreview(UserPreview):
 
 
 class ContactPreview(UserPreview):
-    def build_preview(self, data):
-        pass
+    def build_preview(self, data: Record) ->str:
+        birthday_info = ''
+        email_info = ''
+        address_info = ''
+
+        phones_info = ', '.join([phone.value for phone in data.phones])
+
+        if data.birthday:
+            birthday_info = f' Birthday : {data.birthday.value}'
+
+        if data.email:
+            email_info = f' Email : {data.email.value}'
+
+        if data.address:
+            address_info = f' Address : {data.address.value}'
+
+        return f'{data.name.value} : {phones_info}{birthday_info}{email_info}{address_info}'
 
 
 class NotesPreview(UserPreview):
