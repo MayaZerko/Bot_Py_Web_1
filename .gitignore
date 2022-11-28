@@ -1,2 +1,4 @@
 venv
 .idea
+src/address_book.pickle
+src/notes.pickle
