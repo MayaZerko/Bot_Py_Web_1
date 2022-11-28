@@ -1,26 +1,43 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 
-class UserPreviewFactory:
+from src.user_preview import UserPreview, SimplePreview, ContactsPreview, ContactPreview, NotesPreview, NotePreview
+
+
+class AbstractUserPreviewFactory(ABC):
     @abstractmethod
-    def create_preview(self) -> object:
+    def create_simple_preview(self) -> UserPreview:
         pass
 
-class SimplePreview(UserPreviewFactory):
-    def create_preview(self):
+    @abstractmethod
+    def create_contacts_preview(self) -> UserPreview:
         pass
 
-class NotesPreview(UserPreviewFactory):
-    def create_preview(self):
+    @abstractmethod
+    def create_contact_preview(self) -> UserPreview:
         pass
 
-class NotePreview(UserPreviewFactory):
-    def create_preview(self):
+    @abstractmethod
+    def create_notes_preview(self) -> UserPreview:
         pass
 
-class ContactsPreview(UserPreviewFactory):
-    def create_preview(self):
+    @abstractmethod
+    def create_note_preview(self) -> UserPreview:
         pass
 
-class NotePreview(UserPreviewFactory):
-    def create_preview(self):
-        pass
+
+class UserPreviewFactory(AbstractUserPreviewFactory):
+
+    def create_simple_preview(self) -> UserPreview:
+        return SimplePreview()
+
+    def create_contacts_preview(self) -> UserPreview:
+        return ContactsPreview()
+
+    def create_contact_preview(self) -> UserPreview:
+        return ContactPreview()
+
+    def create_notes_preview(self) -> UserPreview:
+        return NotesPreview()
+
+    def create_note_preview(self) -> UserPreview:
+        return NotePreview()
