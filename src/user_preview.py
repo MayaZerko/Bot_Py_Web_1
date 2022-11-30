@@ -56,4 +56,9 @@ class NotesPreview(UserPreview):
 
 class NotePreview(UserPreview):
     def build_preview(self, data):
-        pass
+        result = 20 * "-" + "\n"
+        result += f"note id - {data.note_id}\n"
+        result += f"note text - {data.note_text}\n"
+        if data.note_tags:
+            result += f"tags - {' '.join(sorted(tag for tag in data.note_tags))}\n"
+        return result

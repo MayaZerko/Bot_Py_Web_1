@@ -1,10 +1,16 @@
 import pickle
 
+from src.user_preview_factory import UserPreviewFactory
+
 
 class Note:
-    def __init__(self, note_text):
+    def __init__(self, note_id: int, note_text):
         self.note_text = note_text
         self.note_tags = set()
+        self.note_id = note_id
+
+    def get_info(self) -> str:
+        return UserPreviewFactory().create_note_preview().build_preview(self)
 
 
 class Notes:
@@ -15,15 +21,14 @@ class Notes:
         self.load_notes_from_file()
 
     def add_note(self, note_text):
-        self.notes[self.notes_iter] = Note(note_text)
+        self.notes[self.notes_iter] = Note(self.notes_iter, note_text)
         self.notes_iter += 1
 
     def delete_note(self, note_id):
         self.notes.pop(note_id)
 
     def get_notes(self):
-        for key, value in self.notes.items():
-            yield key, value
+        return self.notes.values()
 
     def add_tags(self, note_id, tags):
         for tag in tags:
@@ -36,10 +41,10 @@ class Notes:
         self.notes[note_id].note_text = new_note_text
 
     def search_notes(self, search_text):
-        search_result = {}
-        for key, value in self.notes.items():
-            if search_text in value.note_text:
-                search_result[key] = value
+        search_result = []
+        for text in self.notes.values():
+            if search_text in text.note_text:
+                search_result.append(text)
         return search_result
 
     def search_notes_by_tags(self, tags):
