@@ -51,7 +51,10 @@ class ContactPreview(UserPreview):
 
 class NotesPreview(UserPreview):
     def build_preview(self, data):
-        pass
+        result = ""
+        for note in data.get_notes():
+            result += note.get_info()
+        return result
 
 
 class NotePreview(UserPreview):

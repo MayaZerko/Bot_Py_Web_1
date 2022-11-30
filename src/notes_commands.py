@@ -1,5 +1,6 @@
 from notes import user_notes
 from notes_decorator import input_error
+from src.user_preview_factory import UserPreviewFactory
 
 
 @input_error
@@ -11,10 +12,7 @@ def add_note(data):
 
 @input_error
 def show_notes():
-    result = ""
-    for note in user_notes.get_notes():
-        result += note.get_info()
-    return result
+    return UserPreviewFactory().create_notes_preview().build_preview(user_notes)
 
 
 @input_error
