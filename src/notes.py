@@ -1,6 +1,6 @@
 import pickle
 
-from src.user_preview_factory import UserPreviewFactory
+from user_preview_factory import UserPreviewFactory
 
 
 class Note:

@@ -3,7 +3,7 @@ import re
 from collections import UserDict
 from datetime import datetime
 
-import user_preview_factory as user_preview_factory
+import user_preview_factory
 
 
 class Field:

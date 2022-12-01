@@ -1,6 +1,6 @@
 from notes import user_notes
 from notes_decorator import input_error
-from src.user_preview_factory import UserPreviewFactory
+from user_preview_factory import UserPreviewFactory
 
 
 @input_error

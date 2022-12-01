@@ -1,7 +1,7 @@
 from classes import address_book, Record
 from decorator import input_error
 from sort_files import run_sorting
-from src.user_preview_factory import UserPreviewFactory
+from user_preview_factory import UserPreviewFactory
 
 
 def get_help():
