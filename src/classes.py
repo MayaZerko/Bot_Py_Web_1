@@ -77,10 +77,8 @@ class Record:
         self.email = None
         self.address = None
 
-        self.__preview = user_preview_factory.UserPreviewFactory().create_contact_preview()
-
     def get_info(self):
-        return self.__preview.build_preview(self)
+        return user_preview_factory.UserPreviewFactory().create_contact_preview().build_preview(self)
 
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
